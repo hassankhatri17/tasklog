@@ -1,0 +1,66 @@
+/* ============================================
+   TASKLOG — Design Tokens
+   A calm "workshop" palette: violet-tinted paper
+   background, deep plum-black text, one violet
+   accent for primary actions, distinct green/red
+   for success and error states.
+   ============================================ */
+
+:root {
+  /* --- Color --- */
+  --paper:       #F5F4F8;   /* base background, cool violet-tinted white */
+  --paper-dim:    #EAE7F0;   /* recessed panels */
+  --ink:         #211F2E;   /* primary text, deep plum-black */
+  --ink-70:      rgba(33, 31, 46, 0.7);
+  --ink-45:      rgba(33, 31, 46, 0.45);
+  --accent:      #5B3EA6;   /* primary accent, deep violet */
+  --accent-dim:   #E7E1F5;
+  --success:     #2F7D52;   /* completed state */
+  --success-dim:  #DFF0E6;
+  --danger:      #B4442E;   /* error state, delete action */
+  --danger-dim:   #FBEAE5;
+  --line:        rgba(33, 31, 46, 0.12);
+  --line-strong: rgba(33, 31, 46, 0.24);
+  --surface:     #FFFFFF;
+
+  /* --- Type families --- */
+  --font-display: 'Manrope', -apple-system, sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+
+  /* --- Type scale --- */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-md:   1.125rem;
+  --text-lg:   clamp(1.25rem, 1.1rem + 0.5vw, 1.4rem);
+  --text-xl:   clamp(1.6rem, 1.3rem + 1.2vw, 2.1rem);
+  --text-2xl:  clamp(2rem, 1.6rem + 1.8vw, 2.75rem);
+
+  /* --- Spacing scale (base 4px) --- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4rem;
+
+  /* --- Layout --- */
+  --container-max: 900px;
+  --container-pad: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* --- Motion --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-med: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur-med: 0ms; }
+}
