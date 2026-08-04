@@ -1,30 +1,7 @@
 // api.js
-// All network calls to the Tasklog backend live here.
-//
-const BASE_URL = 'http://localhost:4000';
-
-async function request(path, options = {}) {
-  let response;
-  try {
-    response = await fetch(`${BASE_URL}${path}`, {
-      headers: { 'Content-Type': 'application/json' },
-      ...options,
-    });
-  } catch (networkErr) {
-    throw new Error('NETWORK');
-  }
-
-  let body = null;
-  try { body = await response.json(); } catch (_) { /* no body */ }
-
-  if (!response.ok) {
-    const message = body?.error || `Request failed (status ${response.status})`;
-    const err = new Error(message);
-    err.status = response.status;
-    throw err;
-  }
-  return body;
-}
+// Task-related network calls. Auth headers are attached automatically
+// by request() in http.js, so this file only knows about tasks.
+import { request } from './http.js';
 
 export const api = {
   list: () => request('/api/tasks'),

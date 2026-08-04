@@ -6,6 +6,20 @@
 // just centralized instead of scattered across components.
 
 import { api } from './api.js';
+import { clearSession } from './authStore.js';
+
+// If a request comes back 401 mid-session (expired/invalid token), there's
+// no reasonable in-app recovery — send the user back to login. Returns
+// true if it handled the error (caller should stop, since we're navigating
+// away), false otherwise.
+function handleAuthError(err) {
+  if (err.status === 401) {
+    clearSession();
+    window.location.href = 'login.html';
+    return true;
+  }
+  return false;
+}
 
 let state = {
   tasks: [],
@@ -37,6 +51,7 @@ export async function loadTasks() {
     const tasks = await api.list();
     setState({ tasks, loading: false });
   } catch (err) {
+    if (handleAuthError(err)) return;
     setState({ loading: false, error: friendlyMessage(err) });
   }
 }
@@ -47,6 +62,7 @@ export async function createTask({ title, description }) {
     setState({ tasks: [task, ...state.tasks] });
     return { ok: true };
   } catch (err) {
+    if (handleAuthError(err)) return { ok: false, error: 'Redirecting to login…' };
     return { ok: false, error: friendlyMessage(err) };
   }
 }
@@ -59,6 +75,7 @@ export async function toggleComplete(id) {
     const updated = await api.update(id, { completed: !task.completed });
     setState({ tasks: state.tasks.map(t => (t.id === id ? updated : t)) });
   } catch (err) {
+    if (handleAuthError(err)) return;
     setState({ error: friendlyMessage(err) });
   } finally {
     markPending(id, false);
@@ -72,6 +89,7 @@ export async function editTask(id, { title, description }) {
     setState({ tasks: state.tasks.map(t => (t.id === id ? updated : t)) });
     return true;
   } catch (err) {
+    if (handleAuthError(err)) return false;
     setState({ error: friendlyMessage(err) });
     return false;
   } finally {
@@ -85,6 +103,7 @@ export async function deleteTask(id) {
     await api.remove(id);
     setState({ tasks: state.tasks.filter(t => t.id !== id) });
   } catch (err) {
+    if (handleAuthError(err)) return;
     setState({ error: friendlyMessage(err) });
     markPending(id, false);
   }
