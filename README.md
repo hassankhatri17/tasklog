@@ -1,4 +1,7 @@
-# Tasklog (Week 2 | Task 1 — full-stack monorepo)
+# Tasklog
+
+Built for Week 2, Task 1 of my Full-Stack Web Developer internship at
+NeuroFive Solutions.
 
 A task tracker with a frontend connected to a real backend I built myself
 — not a public API. Kept as a **monorepo**: one repo, two independent
