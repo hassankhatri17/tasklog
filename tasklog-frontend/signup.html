@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign up — Tasklog</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-brand">Tasklog</div>
+      <h1 class="auth-title">Create your account</h1>
+      <p class="auth-subtitle">Start tracking tasks that are actually yours.</p>
+
+      <form class="auth-form" id="signup-form" novalidate>
+        <div class="auth-form-error" id="form-error" hidden></div>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" autocomplete="name" />
+          <span class="field-error" id="name-error"></span>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" autocomplete="email" />
+          <span class="field-error" id="email-error"></span>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" autocomplete="new-password" />
+          <span class="field-error" id="password-error"></span>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Confirm password</label>
+          <input type="password" id="confirm" autocomplete="new-password" />
+          <span class="field-error" id="confirm-error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary auth-submit" id="submit-btn">Create account</button>
+      </form>
+
+      <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+  </div>
+
+  <script type="module" src="js/signupPage.js"></script>
+</body>
+</html>
